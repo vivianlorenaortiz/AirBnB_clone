@@ -7,29 +7,29 @@ import models
 
 class BaseModel:
     '''BaseModel class'''
+    created_at = None
     def __init__(self, *args, **kwargs):
-         '''
-         Basemodel
+        '''
+        Basemodel
 
-         Args:
-         *Args: argument passed in
-         **kwargs: arguments with key values
+        Args:
+        *Args: argument passed in
+        **kwargs: arguments with key values
 
-         Return:
-         None
-         '''
-         if len(kwargs) != 0:
-             self.__dict__ = kwargs
-             self.create_at = datetime.strptime(self.create_at,
-                                                '%Y-%m-%dT%H:%M:%S.%f')
-             self.updated_at = datetime.strptime(self.update_at,
-                                                 '%Y-%m-%dT%H:%M:%S.%f')
-         else:
-             self.id = str(uuid.uuid4())
-             self.created_at = datetime.now()
-             self.updated_at = datetime.now()
-             models.storage.new(self)
-
+        Return:
+        None
+        '''
+        if len(kwargs) != 0:
+            self.__dict__ = kwargs
+            self.created_at = datetime.strptime(kwargs["created_at"],
+                                               "%Y-%m-%dT%H:%M:%S.%f")
+            self.updated_at = datetime.strptime(kwargs["updated_at"],
+                                                "%Y-%m-%dT%H:%M:%S.%f")
+        else:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
+            models.storage.new(self)
 
     def __str__(self):
         '''
@@ -37,7 +37,8 @@ class BaseModel:
         string of object
         '''
         return '[{}] ({}) {}'.format(self.__class__.__name__,
-                                         self.id,self.__dict__)
+                                     self.id, self.__dict__)
+
     def save(self):
         ''' updates date for updated_at attribute '''
         self.updated_at = datetime.now()

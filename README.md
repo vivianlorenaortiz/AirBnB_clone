@@ -1,5 +1,5 @@
 # AirBnB clone - The console
-<img src = "https://d2z6c3c3r6k4bx.cloudfront.net/uploads/event/logo/1061432/a991d937097e8176adf1ea7196beb80f.png">
+<img src = "https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwi-kO7TveXlAhXGtVkKHXhEAYEQjRx6BAgBEAQ&url=https%3A%2F%2Fgithub.com%2Fyeungegs%2FAirBnB_clone&psig=AOvVaw3i4GHqrowbx8c4j4UHN_ny&ust=1573675814306865">
 ----------
 
 Table of Contents
