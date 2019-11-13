@@ -14,5 +14,5 @@ class User(BaseModel):
     last_name = ""
 
     def __init__(self, *args, **kwargs):
-        """New user init method."""
-        super().__init__(self, *args, **kwargs)
+        """the init constructor"""
+        super().__init__(**kwargs)
