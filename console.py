@@ -15,7 +15,7 @@ from models.place import Place
 from models.state import State
 from models.city import City
 from models.amenity import Amenity
-
+from models.review import Review
 
 valid_class = ["BaseModel"]
 
@@ -41,20 +41,19 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, args):
         """Creates a new instance of BaseModel and prints the id"""
-        var1 = args.split()
-        if len(var1) == 0:
+
+        if len(args) == 0:
             print("** class name missing **")
             return
-        else:
-            if var1[0] != "BaseModel":
-                print("** class doesn't exist **")
-                return
-            else:
-                object = BaseModel()
-                object.save()
-                valid_class.append(object)
-                print(object.id)
-                return
+        token = args.split()
+
+        try:
+            nwInstance = eval(token[0])()
+            nwInstance.save()
+            print(nwInstance.id)
+        except:
+            print("** class doesn't exist **")
+
     def do_show(self, args):
         """Prints the string representation of an instance"""
         temp = args.split()
