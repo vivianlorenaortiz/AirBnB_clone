@@ -30,7 +30,6 @@ class HBNBCommand(cmd.Cmd):
     def do_quit(self, args):
         """Quit command to exit the program"""
         return True
-
     def do_EOF(self, args):
         """End of File command to quit the program"""
         return True
@@ -125,53 +124,31 @@ class HBNBCommand(cmd.Cmd):
         Updates an instance based on the class name and id by adding or
         updating.
         '''
-        updatevalue = 0.0
-        args = shlex.split(line)
-        flag = 0
-
-        if len(line) == 0:
+        if not line:
             print("** class name missing **")
             return
 
-        try:
-            clsname = shlex.split(line)[0]
-            eval("{}()".format(clsname))
-        except IndexError:
+        token = line.split()
+
+        if token[0] not in myclasses:
             print("** class doesn't exist **")
-            return
-
-        try:
-            instanceid = shlex.split(line)[1]
-        except IndexError:
+        elif len(token) == 1:
             print("** instance id missing **")
-            return
-
-        all_objs = storage.all()
-        try:
-            clschange = all_objs["{}.{}".format(clsname, instanceid)]
-        except IndexError:
-            print("** no instance found **")
-            return
-
-        try:
-            attributename = shlex.split(line)[2]
-        except IndexError:
-            print("** no instance found **")
-            return
-
-        try:
-            updatevalue = shlex.split(line)[3]
-        except IndexError:
-            print("** value missing **")
-            return
-
         else:
-            try:
-                setattr(clschange, attributename, int(updatevalue))
-                storage.save()
-            except:
-                setattr(clschange, attributename, str(updatevalue))
-                storage.save()
+            all_objs = storage.all()
+            for key, val in all_objs.items():
+                ob_new = val.__class__.__name__
+                ob_id = val.id
+                if ob_new == token[0] and ob_id == token[1].strip('"'):
+                    if len(token) == 2:
+                        print("** attribute name missing **")
+                    elif len(token) == 3:
+                        print("** value missing **")
+                    else:
+                        setattr(val, token[2], token[3])
+                        storage.save()
+                    return
+            print("** no instance found **")
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
