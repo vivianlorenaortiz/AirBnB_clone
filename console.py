@@ -20,8 +20,8 @@ valid_class = ["BaseModel"]
 
 class HBNBCommand(cmd.Cmd):
     """Command Interpreter"""
-    prompt = "(hbnb)"
 
+    prompt = "(hbnb)"
     myclasses = ["BaseModel", "User", "State", "City", "Amenity", "Place",
                  "Review"]
 
@@ -125,12 +125,14 @@ class HBNBCommand(cmd.Cmd):
         if len(line) == 0:
             print("** class name missing **")
             return
+
         try:
             clsname = line.split()[0]
             eval("{}()".format(clsname))
         except IndexError:
             print("** class doesn't exist **")
             return
+
         try:
             instanceid = line.split()[1]
         except IndexError:
@@ -143,16 +145,19 @@ class HBNBCommand(cmd.Cmd):
         except IndexError:
             print("** no instance found **")
             return
+
         try:
             attributename = line.split()[2]
         except IndexError:
             print("** no instance found **")
             return
+
         try:
             updatevalue = line.split()[3]
         except IndexError:
             print("** value missing **")
             return
+
         else:
             try:
                 setattr(clschange, attributename, int(updatevalue))
