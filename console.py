@@ -57,6 +57,7 @@ class HBNBCommand(cmd.Cmd):
     def do_show(self, args):
         """Prints the string representation of an instance"""
         temp = args.split()
+
         if len(temp) == 0:
             print("** class name missing **")
             return
@@ -72,7 +73,7 @@ class HBNBCommand(cmd.Cmd):
                 if i == "{}.{}".format(temp[0], temp[1]):
                     print(all_objs[i])
                     return
-                print('** no instance found **')
+            print('** no instance found **')
 
     def do_destroy(self, line):
         '''
