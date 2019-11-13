@@ -4,6 +4,7 @@ Console for HBNB
 """
 
 import cmd
+from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
 from models import storage
 import json
@@ -12,6 +13,7 @@ from models.place import Place
 from models.state import State
 from models.city import City
 from models.amenity import Amenity
+
 
 valid_class = ["BaseModel"]
 
@@ -96,18 +98,16 @@ class HBNBCommand(cmd.Cmd):
         class name.
         '''
         args = line.split()
-        all_obj = storage.all()
+        all_objs = storage.all()
 
-        if len(args) == 0:
-            for i in all_objs:
+        for i in all_objs:
                 strg = str(all_objs[i])
                 print(strg)
-
-        elif line not in self.myclases:
+        if line not in self.myclasses:
             print("** class doesn't exist **")
         else:
             for i in all_objs:
-                if i.strgwith(args[0]):
+                if i.startswith(args[0]):
                     strg = str(all_objs[i])
                     print(strg)
 
