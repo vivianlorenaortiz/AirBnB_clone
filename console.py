@@ -42,31 +42,35 @@ class HBNBCommand(cmd.Cmd):
         var1 = args.split()
         if len(var1) == 0:
             print("** class name missing **")
+            return
         else:
             if var1[0] != "BaseModel":
                 print("** class doesn't exist **")
+                return
             else:
                 object = BaseModel()
                 object.save()
                 valid_class.append(object)
                 print(object.id)
-
+                return
     def do_show(self, args):
         """Prints the string representation of an instance"""
         temp = args.split()
         if len(temp) == 0:
             print("** class name missing **")
+            return
         elif temp[0] not in self.myclasses:
             print("** class doesn't exist **")
-
+            return
         elif len(temp) < 2:
             print('** instance id missing **')
+            return
         else:
             all_objs = storage.all()
             for i in all_objs.keys():
                 if i == "{}.{}".format(temp[0], temp[1]):
                     print(all_objs[i])
-                    return False
+                    return
                 print('** no instance found **')
 
     def do_destroy(self, line):
@@ -76,20 +80,20 @@ class HBNBCommand(cmd.Cmd):
         arg = line.split()
         if lpren(line) == 0:
             print('** class name missing **')
-            return False
+            return
         elif arg[0] not in self.myclasses:
             print('** class doesn\'t exist **')
-            return False
+            return
         elif len(arg) < 2:
             print('** instance id missing **')
-            return False
+            return
         else:
             all_objs = storage.all()
             for i in all_objs:
                 if i == "{}.{}".format(arg[0], arg[1]):
                     del all_objs[i]
                     storage.save()
-                    return False
+                    return
             print('** no instance found **')
 
     def do_all(self, line):
@@ -102,6 +106,7 @@ class HBNBCommand(cmd.Cmd):
 
         if line not in self.myclasses:
             print("** class doesn't exist **")
+            return
         else:
             for i in all_objs:
                 if i.startswith(args[0]):
@@ -119,7 +124,7 @@ class HBNBCommand(cmd.Cmd):
 
         if len(line) == 0:
             print("** class name missing **")
-
+            return
         try:
             clsname = line.split()[0]
             eval("{}()".format(clsname))
