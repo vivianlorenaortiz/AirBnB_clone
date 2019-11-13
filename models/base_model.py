@@ -8,6 +8,7 @@ import models
 class BaseModel:
     '''BaseModel class'''
     created_at = None
+
     def __init__(self, *args, **kwargs):
         '''
         Basemodel
@@ -22,9 +23,9 @@ class BaseModel:
         if len(kwargs) != 0:
             self.__dict__ = kwargs
             self.created_at = datetime.strptime(kwargs["created_at"],
-                                               "%Y-%m-%dT%H:%M:%S.%f")
+                                                '%Y-%m-%dT%H:%M:%S.%f')
             self.updated_at = datetime.strptime(kwargs["updated_at"],
-                                                "%Y-%m-%dT%H:%M:%S.%f")
+                                                '%Y-%m-%dT%H:%M:%S.%f')
         elif len(args) != 0:
             pass
         else:
