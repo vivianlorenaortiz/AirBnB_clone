@@ -125,29 +125,29 @@ class HBNBCommand(cmd.Cmd):
             eval("{}()".format(clsname))
         except IndexError:
             print("** class doesn't exist **")
-            return False
+            return
         try:
             instanceid = line.split()[1]
         except IndexError:
             print("** instance id missing **")
-            return False
+            return
 
         all_objs = storage.all()
         try:
             clschange = all_objs["{}.{}".format(clsname, instanceid)]
         except IndexError:
             print("** no instance found **")
-            return False
+            return
         try:
             attributename = line.split()[2]
         except IndexError:
             print("** no instance found **")
-            return False
+            return
         try:
             updatevalue = line.split()[3]
         except IndexError:
             print("** value missing **")
-            return False
+            return
         else:
             try:
                 setattr(clschange, attributename, int(updatevalue))
