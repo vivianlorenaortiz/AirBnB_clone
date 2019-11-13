@@ -17,6 +17,8 @@ Table of Contents
 -----------
 
 Description
+----------
+
 This proyect hbnb is a full-stack clone of the web application AirBnB. Thos clone was built in several parts:
 *create a command interpreter using the cmd module<br>
 *serialize and deserialize a Class<br>
@@ -27,7 +29,10 @@ This proyect hbnb is a full-stack clone of the web application AirBnB. Thos clon
 ------------
 Requirements
 -----------
+
 General
+-----------
+
 *How to create a Python package<br>
 *How to create a command interpreter in Python using the cmd module<br>
 *What is Unit testing and how to implement it in a large project<br>
@@ -56,4 +61,5 @@ Authors
 ----------
 Licencia
 ----------
+
 AirBnB Clone is open source and free to download and use
