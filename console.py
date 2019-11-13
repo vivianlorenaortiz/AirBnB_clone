@@ -4,6 +4,7 @@ Console for HBNB
 """
 
 import cmd
+import sys
 from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
 from models import storage
@@ -78,7 +79,8 @@ class HBNBCommand(cmd.Cmd):
         Deletes an instance based on the class name and id.
         '''
         arg = line.split()
-        if lpren(line) == 0:
+
+        if len(arg) == 0:
             print('** class name missing **')
             return
         elif arg[0] not in self.myclasses:
@@ -104,7 +106,7 @@ class HBNBCommand(cmd.Cmd):
         args = line.split()
         all_objs = storage.all()
 
-        if len(args) == 0:
+        if len(line) == 0:
             print(all_objs)
 
         elif line not in self.myclasses:
