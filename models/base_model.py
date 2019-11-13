@@ -39,7 +39,7 @@ class BaseModel:
         string of object
         '''
         return '[{}] ({}) {}'.format(self.__class__.__name__,
-                                     self.id, self.__dict__)
+                                     self.id, str(self.__dict__))
 
     def save(self):
         ''' updates date for updated_at attribute '''
