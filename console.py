@@ -2,16 +2,26 @@
 """
 Console for HBNB
 """
-valid_class = ["BaseModel"]
 
 import cmd
 from models.base_model import BaseModel
 from models import storage
+import json
+from models.user import User
+from models.place import Place
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+
+valid_class = ["BaseModel"]
+
 
 class HBNBCommand(cmd.Cmd):
     """Command Interpreter"""
     prompt = "(hbnb)"
-    myclasses = ["BaseModel", "User", "State", "City", "Amenity", "Place", "Review"]
+
+    myclasses = ["BaseModel", "User", "State", "City", "Amenity", "Place",
+                 "Review"]
 
     def do_quit(self, args):
         """Quit command to exit the program"""
@@ -39,26 +49,30 @@ class HBNBCommand(cmd.Cmd):
                 valid_class.append(object)
                 print(object.id)
 
-
     def do_show(self, args):
         """Prints the string representation of an instance"""
         temp = args.split()
         if len(temp) == 0:
             print("** class name missing **")
-        for items in valid_class:
-            if temp[0] != items:
-                print("** class doesn't exist **")
-            if temp[1] != items:
-                print("** intance id missing**")
-            elif len(args) >= 2 and temp[0] == items:
-                print(temp[0])
+        elif temp[0] not in self.myclasses:
+            print("** class doesn't exist **")
+
+        elif len(temp) < 2:
+            print('** instance id missing **')
+        else:
+            all_objs = storage.all()
+            for i in all_objs.keys():
+                if i == "{}.{}".format(temp[0], temp[1]):
+                    print(all_objs[i])
+                    return False
+                print('** no instance found **')
 
     def do_destroy(self, line):
         '''
         Deletes an instance based on the class name and id.
         '''
         arg = line.split()
-        if len(line) == 0:
+        if lpren(line) == 0:
             print('** class name missing **')
             return False
         elif arg[0] not in self.myclasses:
@@ -76,6 +90,75 @@ class HBNBCommand(cmd.Cmd):
                     return False
             print('** no instance found **')
 
+    def do_all(self, line):
+        '''
+        Prints all string representation of all instances based or not on the
+        class name.
+        '''
+        args = line.split()
+        all_obj = storage.all()
+
+        if len(args) == 0:
+            for i in all_objs:
+                strg = str(all_objs[i])
+                print(strg)
+
+        elif line not in self.myclases:
+            print("** class doesn't exist **")
+        else:
+            for i in all_objs:
+                if i.strgwith(args[0]):
+                    strg = str(all_objs[i])
+                    print(strg)
+
+    def do_updatea(self, line):
+        '''
+        Updates an instance based on the class name and id by adding or
+        updating.
+        '''
+        args = line.split()
+        flag = 0
+
+        if len(line) == 0:
+            print("** class name missing **")
+
+        try:
+            clsname = line.split()[0]
+            eval("{}()".format(clsname))
+        except IndexError:
+            print("** class doesn't exist **")
+
+        try:
+            instanceid = line.split()[1]
+        except IndexError:
+            print("** instance id missing **")
+
+        all_objs = storage.all()
+        try:
+            clschange = all_objs["{}.{}".format(clsname, instanceid)]
+        except IndexError:
+            print("** no instance found **")
+
+        try:
+            attributename = line.split()[2]
+        except IndexError:
+            print("** no instance found **")
+
+        try:
+            updatevalue = line.split()[3]
+        except IndexError:
+            print("** value missing **")
+
+        if updatevalue.isdecimal() is True:
+            setattr(clschange, attributename, int(updatevalue))
+            storage.save()
+        else:
+            try:
+                setattr(clschange, attributename, int(updatevalue))
+                storage.save()
+            except:
+                setattr(clschange, attributename, str(updatevalue))
+                storage.save()
 
 if __name__ == '__main__':
-     HBNBCommand().cmdloop()
+    HBNBCommand().cmdloop()
