@@ -100,9 +100,6 @@ class HBNBCommand(cmd.Cmd):
         args = line.split()
         all_objs = storage.all()
 
-        for i in all_objs:
-                strg = str(all_objs[i])
-                print(strg)
         if line not in self.myclasses:
             print("** class doesn't exist **")
         else:
@@ -111,11 +108,12 @@ class HBNBCommand(cmd.Cmd):
                     strg = str(all_objs[i])
                     print(strg)
 
-    def do_updatea(self, line):
+    def do_update(self, line):
         '''
         Updates an instance based on the class name and id by adding or
         updating.
         '''
+        updatevalue = 0.0
         args = line.split()
         flag = 0
 
@@ -148,10 +146,6 @@ class HBNBCommand(cmd.Cmd):
             updatevalue = line.split()[3]
         except IndexError:
             print("** value missing **")
-
-        if updatevalue.isdecimal() is True:
-            setattr(clschange, attributename, int(updatevalue))
-            storage.save()
         else:
             try:
                 setattr(clschange, attributename, int(updatevalue))
