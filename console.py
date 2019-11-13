@@ -104,9 +104,13 @@ class HBNBCommand(cmd.Cmd):
         args = line.split()
         all_objs = storage.all()
 
-        if line not in self.myclasses:
+        if len(args) == 0:
+            print(all_objs)
+
+        elif line not in self.myclasses:
             print("** class doesn't exist **")
             return
+
         else:
             for i in all_objs:
                 if i.startswith(args[0]):
