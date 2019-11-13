@@ -3,6 +3,7 @@
 Console for HBNB
 """
 
+import shlex
 import cmd
 import sys
 from models.engine.file_storage import FileStorage
@@ -126,7 +127,7 @@ class HBNBCommand(cmd.Cmd):
         updating.
         '''
         updatevalue = 0.0
-        args = line.split()
+        args = shlex.split(line)
         flag = 0
 
         if len(line) == 0:
@@ -134,14 +135,14 @@ class HBNBCommand(cmd.Cmd):
             return
 
         try:
-            clsname = line.split()[0]
+            clsname = shlex.split(line)[0]
             eval("{}()".format(clsname))
         except IndexError:
             print("** class doesn't exist **")
             return
 
         try:
-            instanceid = line.split()[1]
+            instanceid = shlex.split(line)[1]
         except IndexError:
             print("** instance id missing **")
             return
@@ -154,13 +155,13 @@ class HBNBCommand(cmd.Cmd):
             return
 
         try:
-            attributename = line.split()[2]
+            attributename = shlex.split(line)[2]
         except IndexError:
             print("** no instance found **")
             return
 
         try:
-            updatevalue = line.split()[3]
+            updatevalue = shlex.split(line)[3]
         except IndexError:
             print("** value missing **")
             return
