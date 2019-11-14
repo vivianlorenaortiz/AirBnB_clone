@@ -32,6 +32,7 @@ This proyect hbnb is a full-stack clone of the web application AirBnB. Thos clon
 
 Requirements
 ------------
+
 General
 *How to create a Python package<br>
 *How to create a command interpreter in Python using the cmd module<br>
@@ -43,6 +44,7 @@ General
 *What is *args and how to use it<br>
 *What is **kwargs and how to use it<br>
 *How to handle named arguments in a function<br>
+
 -----------
 ## Commands and how to use it                                                                                     
 the command interpreter allow us to handle our data requirements with the following commands
@@ -71,6 +73,7 @@ this is the objects that you can pass to the command console
 
 -----------
 File Structure
+------------
 
 *AUTHORS-list of contributors<br>
 *-
