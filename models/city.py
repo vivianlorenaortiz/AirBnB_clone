@@ -7,7 +7,3 @@ class City(BaseModel):
 
     state_id = ""
     name = ""
-
-    def __init__(self, *args, **kwargs):
-        """All the cities the user can choose in the app."""
-        super().__init__(self, *args, **kwargs)

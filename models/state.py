@@ -8,7 +8,3 @@ class State(BaseModel):
     """All the states available in the app."""
 
     name = ""
-
-    def __init__(self, *args, **kwargs):
-        """New states."""
-        super().__init__(self, *args, **kwargs)
