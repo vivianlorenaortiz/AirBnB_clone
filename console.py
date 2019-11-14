@@ -127,51 +127,33 @@ class HBNBCommand(cmd.Cmd):
         Updates an instance based on the class name and id by adding or
         updating.
         '''
-        updatevalue = 0.0
-        args = shlex.split(line)
-        flag = 0
-
-        if len(line) == 0:
+def do_update(self, line):
+        '''
+        Updates an instance based on the class name and id by adding or
+        updating.
+        '''
+        data = shlex.split(line)
+        if len(data) < 1:
             print("** class name missing **")
-            return
-
-            try:
-                clsname = shlex.split(line)[0]
-                eval("{}()".format(clsname))
-            except IndexError:
-                print("** class doesn't exist **")
-                return
-        try:
-            instanceid = shlex.split(line)[1]
-        except IndexError:
+        elif not data[0] in HBNBCommand.myclasses:
+            print("** class doesn't exist **")
+        elif len(data) < 2:
             print("** instance id missing **")
-            return
-
-        all_objs = storage.all()
-        try:
-            clschange = all_objs["{}.{}".format(clsname, instanceid)]
-        except IndexError:
-            print("** no instance found **")
-            return
-
-        try:
-            attributename = shlex.split(line)[2]
-        except IndexError:
-            print("** no instance found **")
-            return
-
-        try:
-            updatevalue = shlex.split(line)[3]
-        except IndexError:
-            print("** value missing **")
-            return
         else:
-            try:
-                setattr(clschange, attributename, int(updatevalue))
-                storage.save()
-            except:
-                setattr(clschange, attributename, str(updatevalue))
-                storage.save()
-
+            key = data[0] + "." + data[1]
+            if key not in storage.all():
+                print("** no instance found **")
+            elif len(data) < 3:
+                print("** attribute name missing **")
+            elif len(data) < 4:
+                print("** value missing **")
+            else:
+                if key not in storage.all():
+                    print("** no instance found **")
+                else:
+                    obj = storage.all().get(key)
+                    setattr(obj, data[2], data[3])
+                    storage.save()
+                    
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
