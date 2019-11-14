@@ -2,6 +2,7 @@
 <img src = "https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwi-kO7TveXlAhXGtVkKHXhEAYEQjRx6BAgBEAQ&url=https%3A%2F%2Fgithub.com%2Fyeungegs%2FAirBnB_clone&psig=AOvVaw3i4GHqrowbx8c4j4UHN_ny&ust=1573675814306865">
 ----------
 
+
 Table of Contents
 ----------
 
@@ -16,6 +17,7 @@ Table of Contents
 
 -----------
 
+----------
 Description
 ----------
 
@@ -27,12 +29,10 @@ This proyect hbnb is a full-stack clone of the web application AirBnB. Thos clon
 *Use *arg and **kwargs<br>
 *handle named arguments in a function<br>
 ------------
+
 Requirements
------------
 
 General
------------
-
 *How to create a Python package<br>
 *How to create a command interpreter in Python using the cmd module<br>
 *What is Unit testing and how to implement it in a large project<br>
@@ -44,6 +44,7 @@ General
 *What is **kwargs and how to use it<br>
 *How to handle named arguments in a function<br>
 -----------
+
 File Structure
 *AUTHORS-list of contributors<br>
 *-
