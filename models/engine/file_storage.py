@@ -21,7 +21,7 @@ class FileStorage():
 
     def all(self):
         """returns the dictionary __objects"""
-        return FileStorage.__objects
+        return self.__objects
 
     def new(self, obj):
         """sets in __objects the obj with key <obj class name>.id"""
@@ -40,6 +40,7 @@ class FileStorage():
         """
         method reload
         """
+
         my_dict = {'BaseModel': BaseModel, 'User': User, 'Place': Place,
                    'State': State, 'City': City, 'Amenity': Amenity,
                    'Review': Review}
