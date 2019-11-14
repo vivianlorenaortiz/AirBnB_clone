@@ -20,7 +20,7 @@ Description
 ----------
 ----------
 
-This proyect hbnb is a full-stack clone of the web application AirBnB. Thos clone was built in several parts:
+This proyect hbnb is a full-stack clone of the web application AirBnB. Thos clone was built in several parts:<br>
 *create a command interpreter using the cmd module<br>
 *serialize and deserialize a Class<br>
 *Write an read JSON file<br>
@@ -44,8 +44,34 @@ General
 *What is **kwargs and how to use it<br>
 *How to handle named arguments in a function<br>
 -----------
+## Commands and how to use it                                                                                     
+the command interpreter allow us to handle our data requirements with the following commands
+                                                                                                                      
+| Command | Function |                                                                                                
+| ------- | ------------------------------------ |
+| create | create a new instace of a class |
+| show | show the info of an instance of a class |
+| destroy | destroy a instance of a class |
+| update | update the info of the objects in an instance |
+| all | update the info of the objects in an instance |
+| quit | exit the console |
+| help | show the help of the commands |
 
+## Objects
+this is the objects that you can pass to the command console
+
+| Object | Function |                                                                                                
+| ------- | -------- |
+| city | city of the reservation |
+| state | country state of the reservation |
+| place | Name of the place of reservation |
+| user | Name of the user who reserves|
+| amenity | Benefits of the place |
+| review | review of the room and the guest |
+
+-----------
 File Structure
+
 *AUTHORS-list of contributors<br>
 *-
 ----------
