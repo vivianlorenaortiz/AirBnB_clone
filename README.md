@@ -16,9 +16,8 @@ Table of Contents
 *License<br>
 
 -----------
-
-----------
 Description
+----------
 ----------
 
 This proyect hbnb is a full-stack clone of the web application AirBnB. Thos clone was built in several parts:
@@ -28,10 +27,11 @@ This proyect hbnb is a full-stack clone of the web application AirBnB. Thos clon
 *manege datetime<br>
 *Use *arg and **kwargs<br>
 *handle named arguments in a function<br>
+
 ------------
 
 Requirements
-
+------------
 General
 *How to create a Python package<br>
 *How to create a command interpreter in Python using the cmd module<br>
