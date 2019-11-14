@@ -23,7 +23,7 @@ valid_class = ["BaseModel"]
 class HBNBCommand(cmd.Cmd):
     """Command Interpreter"""
 
-    prompt = "(hbnb)"
+    prompt = "(hbnb) "
     myclasses = ["BaseModel", "User", "State", "City", "Amenity", "Place",
                  "Review"]
 
@@ -104,21 +104,24 @@ class HBNBCommand(cmd.Cmd):
         Prints all string representation of all instances based or not on the
         class name.
         '''
-        args = line.split()
-        all_objs = storage.all()
-
-        if len(line) == 0:
-            print(all_objs)
-
-        elif line not in self.myclasses:
-            print("** class doesn't exist **")
-            return
-
+        data = shlex.split(line)
+        my_list = []
+        if len(line) < 1:  # If only typed all
+            # Print all the items of storage
+            for key, value in storage.all().items():
+                c_name, c_id = key.split(".")
+                my_list.append("{}".format(value))
+            print(my_list)
         else:
-            for i in all_objs:
-                if i.startswith(args[0]):
-                    strg = str(all_objs[i])
-                    print(strg)
+            if not data[0] in HBNBCommand.classes:
+                print("** class doesn't exist **")
+            else:
+                # print all the keys with data[0]
+                for key, value in storage.all().items():
+                    c_name, c_id = key.split(".")
+                    if c_name == data[0]:
+                        my_list.append("{}".format(value))
+                print(my_list)
 
     def do_update(self, line):
         '''
