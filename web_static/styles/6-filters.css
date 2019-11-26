@@ -46,13 +46,17 @@ button:hover {
 }
 .popover {
     background-color: #FAFAFA;
-    width: 87%;
-    position: absolute;
+    popover-width: 100%;
+    position: relative;
     border: #DDDDDD solid 1px;
     border-radius: 4px;
     display: none;
     padding-right: 0px;
     list-style-type: none;
+    top: 20px;
+    margin: 0;
+    left: -51px;
+
 }
 
 .popover h2 {
@@ -62,7 +66,7 @@ button:hover {
 
 .locations > .popover > li {
     padding-bottom: 30px;
-    margin-left: 30px:
+    margin-left: 30px;
 }
 
 .locations > .popover > li > ul {
